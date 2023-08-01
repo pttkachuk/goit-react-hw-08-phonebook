@@ -9,6 +9,7 @@ import {
   StyledLogInput,
   StyledLogLabel,
   StyledLogSpan,
+  StyledLogTitle,
 } from './StyledPages/StyledLoginPage';
 
 const Login = () => {
@@ -32,7 +33,7 @@ const Login = () => {
 
   return (
     <StyledLogDiv>
-      <h1>Login into your account</h1>
+      <StyledLogTitle>Login into your account</StyledLogTitle>
       <StyledLogForm onSubmit={handleSubmit}>
         <StyledLogLabel>
           <StyledLogSpan>Email:</StyledLogSpan>

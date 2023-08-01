@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
+export const StyledLogTitle = styled.h1`
+text-align: center;
+`;
+
 export const StyledLogDiv = styled.div`
 border: none;
 border-radius: 5px;
 background-color: #f2f2f2;
 max-width: 400px;
+margin-top: 20px;
 margin-left: auto;
 margin-right: auto;
 padding: 20px;
