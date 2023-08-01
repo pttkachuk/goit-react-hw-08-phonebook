@@ -10,7 +10,7 @@ import {
 } from './ContactFormStyled';
 
 import { selectContacts } from 'redux/selectors';
-import { addContacts } from 'redux/operations';
+import { addContacts } from 'redux/contactsOperations';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
