@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   StyledBtn,
@@ -10,37 +9,24 @@ import {
 } from './ContactFormStyled';
 
 import { selectContacts } from 'redux/selectors';
-import { addContacts } from 'redux/contactsOperations';
+import { addContact } from 'redux/contactsOperations';
 
 export default function ContactForm() {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-
-  const onNameChange = event => {
-    setName(event.target.value);
-  };
-
-  const onPhoneChange = event => {
-    setPhone(event.target.value);
-  };
   const handleSubmit = event => {
     event.preventDefault();
+    const elements = event.currentTarget.elements;
+    const name = elements.contactName.value;
+    const number = elements.contactNumber.value;
     if (
       contacts.some(value => value.name.toLowerCase() === name.toLowerCase())
     ) {
       alert(`${name} is alredy in contacts`);
     } else {
-      dispatch(addContacts({ name, phone }));
+      dispatch(addContact({ name, number }));
     }
-    reset();
-  };
-
-  const reset = () => {
-    setName('');
-    setPhone('');
+    event.currentTarget.reset();
   };
 
   return (
@@ -49,11 +35,9 @@ export default function ContactForm() {
         <StyledLabel>
           <StyledSpan>Name</StyledSpan>
           <StyledInput
-            value={name}
-            onChange={onNameChange}
             type="text"
-            name="name"
-            placeholder="Your name..."
+            name="contactName"
+            placeholder="Contact name..."
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -62,11 +46,9 @@ export default function ContactForm() {
         <StyledLabel>
           <StyledSpan>Number</StyledSpan>
           <StyledInput
-            value={phone}
-            onChange={onPhoneChange}
             type="tel"
-            name="phone"
-            placeholder="Your number..."
+            name="contactNumber"
+            placeholder="Contact number..."
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
