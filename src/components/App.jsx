@@ -1,31 +1,62 @@
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import SearchBar from './SearchBar/SearchBar';
-import { StyledMainContainer } from './FileContainer/StyledContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
-import { fetchContacts } from 'redux/contactsOperations';
 import Loader from './Loader/Loader';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
+import { logOutThunk, refreshUserThunk } from 'redux/userOperation';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
+
+const Home = lazy(() => import('pages/Home'));
+const Login = lazy(() => import('pages/Login'));
+const Register = lazy(() => import('pages/Register'));
+const Contacts = lazy(() => import('pages/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const userData = useSelector(state => state.user.userData);
+  const token = useSelector(state => state.user.token);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (!token) return;
+
+    dispatch(refreshUserThunk());
+  }, [dispatch, token]);
+
+  const handleLogOut = () => {
+    dispatch(logOutThunk());
+  };
+
   return (
-    <StyledMainContainer>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      {contacts.length > 0 && <h2>Contacts</h2>}
-      {isLoading && !error && <Loader />}
-      {contacts.length > 0 ? <SearchBar /> : <h2>Your phonebook is empty</h2>}
-      {error && error}
-      {contacts.length > 0 && <ContactList />}
-    </StyledMainContainer>
+    <div>
+      <header>
+        <nav>
+          <Link to="/">Home</Link>
+          {userData ? (
+            <>
+              <Link to="/contacts">Contacts</Link>
+              <div>
+                <p>Hello, {userData.name}!</p>
+                <button onClick={handleLogOut}>Log Out</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
+        </nav>
+      </header>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/contacts" element={<Contacts />} />
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </div>
   );
 }
