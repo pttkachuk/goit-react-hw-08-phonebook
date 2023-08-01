@@ -2,6 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/userOperation';
+import {
+  StyledLogBtn,
+  StyledLogDiv,
+  StyledLogForm,
+  StyledLogInput,
+  StyledLogLabel,
+  StyledLogSpan,
+} from './StyledPages/StyledLoginPage';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,32 +31,31 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <StyledLogDiv>
       <h1>Login into your account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email:</p>
-          <input
+      <StyledLogForm onSubmit={handleSubmit}>
+        <StyledLogLabel>
+          <StyledLogSpan>Email:</StyledLogSpan>
+          <StyledLogInput
             placeholder="across@mail.com"
             name="userEmail"
             type="email"
             required
           />
-        </label>
-        <label>
-          <p>Password:</p>
-          <input
+        </StyledLogLabel>
+        <StyledLogLabel>
+          <StyledLogSpan>Password:</StyledLogSpan>
+          <StyledLogInput
             placeholder="examplepwd12345"
             name="userPassword"
             type="password"
             minLength={7}
             required
           />
-        </label>
-        <br />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+        </StyledLogLabel>
+        <StyledLogBtn type="submit">Sign In</StyledLogBtn>
+      </StyledLogForm>
+    </StyledLogDiv>
   );
 };
 
