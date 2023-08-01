@@ -6,15 +6,19 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/selectors';
+import {
+  StyledContactsTitle,
+  StyledSecondContTitle,
+} from './StyledPages/StyledContactsPage';
 
 const Contacts = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   return (
     <StyledMainContainer>
-      <h1>Phonebook</h1>
+      <StyledContactsTitle>Add Contact</StyledContactsTitle>
       <ContactForm />
-      <h2>Contacts</h2>
+      <StyledSecondContTitle>Find Contact</StyledSecondContTitle>
       {isLoading && !error && <Loader />}
       <SearchBar />
       {error && error}
