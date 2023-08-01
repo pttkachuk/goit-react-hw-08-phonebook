@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerThunk } from 'redux/userOperation';
+import {
+  StyledRegBtn,
+  StyledRegDiv,
+  StyledRegForm,
+  StyledRegInput,
+  StyledRegLabel,
+  StyledRegSpan,
+  StyledRegTitle,
+} from './StyledPages/StyledRegisterPage';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -24,41 +33,40 @@ const Register = () => {
     event.currentTarget.reset();
   };
   return (
-    <div>
-      <h1>Register Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Name:</p>
-          <input
+    <StyledRegDiv>
+      <StyledRegTitle>Register Account</StyledRegTitle>
+      <StyledRegForm onSubmit={handleSubmit}>
+        <StyledRegLabel>
+          <StyledRegSpan>Name:</StyledRegSpan>
+          <StyledRegInput
             placeholder="Name Surname"
             name="userName"
             type="text"
             required
           />
-        </label>
-        <label>
-          <p>Email:</p>
-          <input
+        </StyledRegLabel>
+        <StyledRegLabel>
+          <StyledRegSpan>Email:</StyledRegSpan>
+          <StyledRegInput
             placeholder="example@mail.com"
             name="userEmail"
             type="email"
             required
           />
-        </label>
-        <label>
-          <p>Password:</p>
-          <input
+        </StyledRegLabel>
+        <StyledRegLabel>
+          <StyledRegSpan>Password:</StyledRegSpan>
+          <StyledRegInput
             placeholder="examplepwd12345"
             name="userPassword"
             type="password"
             minLength={7}
             required
           />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+        </StyledRegLabel>
+        <StyledRegBtn type="submit">Sign Up</StyledRegBtn>
+      </StyledRegForm>
+    </StyledRegDiv>
   );
 };
 
