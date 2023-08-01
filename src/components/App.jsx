@@ -4,7 +4,7 @@ import SearchBar from './SearchBar/SearchBar';
 import { StyledMainContainer } from './FileContainer/StyledContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contactsOperations';
 import Loader from './Loader/Loader';
 import { useEffect } from 'react';
 
