@@ -20,11 +20,11 @@ const ContactList = () => {
   }, [dispatch]);
   return (
     <StyledContactList>
-      {filteredContacts.map(({ id, phone, name }) => {
+      {filteredContacts.map(({ id, number, name }) => {
         return (
           <StyledContact key={id}>
             <StyledDatas>
-              {name}: {phone}
+              {name}: {number}
             </StyledDatas>
             <StyledListBtn
               type="button"
