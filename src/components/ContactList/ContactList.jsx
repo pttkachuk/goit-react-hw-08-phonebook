@@ -15,12 +15,9 @@ import { useEffect } from 'react';
 const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
-  const userData = useSelector(state => state.user.userData);
   useEffect(() => {
-    if (!userData) return;
-
     dispatch(fetchContacts());
-  }, [dispatch, userData]);
+  }, [dispatch]);
   return (
     <StyledContactList>
       {filteredContacts.map(({ id, phone, name }) => {
