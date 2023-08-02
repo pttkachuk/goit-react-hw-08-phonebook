@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader/Loader';
 import { Suspense, lazy, useEffect } from 'react';
-import { refreshUserThunk } from 'redux/userOperation';
+import { refreshUserThunk } from 'redux/user/userOperation';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 import { PublicRoute } from './PublicRoute/PublicRoute';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { registerThunk } from 'redux/userOperation';
+import { registerThunk } from 'redux/user/userOperation';
 import {
   StyledRegBtn,
   StyledRegDiv,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOutThunk } from 'redux/userOperation';
+import { logOutThunk } from 'redux/user/userOperation';
 import { BtnDiv, LogOutBtn, UserMenuDiv, UserName } from './StyledUserMenu';
 
 const UserMenu = () => {

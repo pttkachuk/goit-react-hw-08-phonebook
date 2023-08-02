@@ -9,7 +9,7 @@ import {
 } from './ContactFormStyled';
 
 import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsOperations';
+import { addContact } from 'redux/contacts/contactsOperations';
 
 export default function ContactForm() {
   const contacts = useSelector(selectContacts);

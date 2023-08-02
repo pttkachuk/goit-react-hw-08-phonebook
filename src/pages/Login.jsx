@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginThunk } from 'redux/userOperation';
+import { loginThunk } from 'redux/user/userOperation';
 import {
   StyledLogBtn,
   StyledLogDiv,

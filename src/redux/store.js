@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsReducer } from './contactsSlice';
-import { searchBarReducer } from './searchBarSlice';
+import { contactsReducer } from './contacts/contactsSlice';
+import { searchBarReducer } from './searchBar/searchBarSlice';
 import storage from 'redux-persist/lib/storage';
-import { userReducer } from './userSlice';
+import { userReducer } from './user/userSlice';
 import {
     persistStore,
     persistReducer,

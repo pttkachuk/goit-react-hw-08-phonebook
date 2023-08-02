@@ -6,7 +6,7 @@ import {
   StyledSearchSpan,
 } from './SearchBarStyled';
 import { selectFilter } from 'redux/selectors';
-import { setFilter } from 'redux/searchBarSlice';
+import { setFilter } from 'redux/searchBar/searchBarSlice';
 
 const SearchBar = () => {
   const dispatch = useDispatch();
